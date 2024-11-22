@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif; /* Cambia por tu fuente deseada */
+    background-image: url('src\assets\images\background.jpg');
+    background-size: cover; /* La imagen se ajusta para cubrir todo el fondo */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* La imagen se mantiene fija al hacer scroll */
+    background-position: center;
+    color: #333; /* Color de texto por defecto */
+  }
+  .img-profile {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+  }
+  
+  .navbar .dropdown-menu {
+    right: auto;
+    left: 0;
+  }
+  
+  .bg-custom {
+    background-color: #f8f9fa; /* Cambia el color del fondo si es necesario */
+  }
+  
