@@ -1,0 +1,84 @@
+/* Contenedor principal */
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: #ffe4e1; /* Color de fondo rosado claro */
+    background-image: url('/assets/images/background.jpg'); /* Fondo con formas */
+    background-size: cover;
+    background-position: center;
+  }
+  
+  /* Tarjeta del formulario */
+  .signup-card {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con transparencia */
+    border-radius: 20px;
+    padding: 60px; /* Incrementa el padding para más espacio interno */
+    width: 95%; /* Ajusta el ancho relativo */
+    max-width: 600px; /* Aumenta el tamaño máximo */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15); /* Hace más notable la sombra */
+    text-align: center;
+    margin: auto; /* Centra la tarjeta horizontalmente */
+  }
+  
+  /* Título principal */
+  .app-title {
+    font-size: 2rem;
+    color: #6b5b95; /* Color lila pastel */
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  /* Subtítulo */
+  .subtitle {
+    font-size: 1.2rem;
+    color: #6b5b95;
+    margin-bottom: 30px;
+  }
+  
+  .signup-link {
+    color: #9370db;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .signup-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Campos de entrada */
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #d8bfd8; /* Borde lila pastel */
+    border-radius: 30px;
+    font-size: 1rem;
+    color: #6b5b95;
+    margin-bottom: 20px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  .input-field:focus {
+    border-color: #9370db; /* Lila más intenso */
+  }
+  
+  /* Botón de registro */
+  .btn-login {
+    width: 100%;
+    padding: 10px;
+    background-color: #9370db; /* Lila pastel */
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-login:hover {
+    background-color: #6b5b95; /* Lila oscuro */
+  }
+  

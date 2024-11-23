@@ -1,5 +1,6 @@
 <h1>{{titlePage}}</h1>
 
-<app-menu *ngIf="!esPaginaLogin()"></app-menu>
+<app-menu *ngIf="!esPaginaLogin() && !esPaginaSignup()"></app-menu>
+
 <router-outlet></router-outlet>
 

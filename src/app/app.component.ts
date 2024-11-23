@@ -18,6 +18,9 @@ export class AppComponent {
     //this.document.body.classList.add('bg-gradient-primary');
   }
   esPaginaLogin(): boolean {
-    return this.router.url === '/login'; // Cambia '/login' si el path es diferente
+    return this.router.url === '/login'; 
+  }
+  esPaginaSignup(): boolean {
+    return this.router.url === '/signup'; 
   }
 }

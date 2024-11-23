@@ -20,9 +20,13 @@ export class SignupComponent {
   onRegister(form: any): void {
     this.authenticationService.register(form.value).subscribe(
       (res) => {
-        localStorage.setItem('accessToken', JSON.parse(JSON.stringify(res)).accessToken);
-        this.router.navigateByUrl('/login');
+        console.log('Registro exitoso:', res); // Útil para verificar la respuesta
+        this.router.navigate(['/login']); // Redirige al login después de registrarse
+      },
+      (err) => {
+        console.error('Error durante el registro:', err); // Maneja errores si es necesario
       }
     );
   }
+  
 }
