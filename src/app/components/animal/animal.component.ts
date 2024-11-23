@@ -56,7 +56,6 @@ export class AnimalComponent {
     );
   }
 
-
   newMessage(messageText: string) {
     this.toastr.success('Clic aquí para actualizar la lista', messageText)
       .onTap
