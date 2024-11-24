@@ -1,25 +1,26 @@
 <!-- Page Wrapper -->
 <div id="wrapper">
   <!-- Content Wrapper -->
-
   <div id="content-wrapper" class="d-flex flex-column">
+
     <!-- Main Content -->
     <div id="content">
+
       <!-- Begin Page Content -->
       <div class="container-fluid">
+
         <!-- Content Row -->
 
         <div class="row">
+
           <!--AQUI EL CONTENIDO CENTRAL-->
 
           <div class="container-fluid mt-4">
             <div class="row">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="/animal">Inicio</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">
-                    Metas
-                  </li>
+                  <li class="breadcrumb-item"><a href="/meta">Inicio</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Metas</li>
                 </ol>
               </nav>
               <div class="col-md-12 d-flex justify-content-center">
@@ -35,13 +36,8 @@
               <div class="col-md-10">
                 <div class="">
                   <!-- Button trigger modal -->
-                  <button
-                    type="button"
-                    class="btn btn-primary"
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModal"
-                  >
-                    Registrar metas
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Registrar Meta
                   </button>
                 </div>
                 <!--INICIA TABLA-->
@@ -57,79 +53,38 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let item of animalList">
-                        <td>{{ item.nombreMeta }}</td>
-                        <td>{{ item.descripcion }}</td>
-                        <td>{{ item.fecha }}</td>
-                        <td>
-                          <button
-                            type="button"
-                            class="btn btn-primary"
-                            (click)="toggleEditAnimal(item._id)"
-                          >
+                      <tr *ngFor="let item of meta">
+                        <td>{{item.nombreMeta}}</td>
+                        <td>{{item.descripcion}}</td>
+                        <td>{{item.fecha}}</td>
+                        <td><button type="button" class="btn btn-primary" (click)="toggleEditMeta(item._id)">
                             <i class="bi bi-pencil-square"></i>
-                          </button>
-                        </td>
-                        <td>
-                          <button
-                            type="button"
-                            class="btn btn-primary"
-                            (click)="deleteAnimalEntry(item._id)"
-                          >
+                          </button></td>
+                        <td><button type="button" class="btn btn-primary" (click)="deleteMetaEntry(item._id)">
                             <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
+                          </button></td>
                       </tr>
-                    </tbody>
                   </table>
                 </div>
                 <!--TERMINA TABLA-->
-                <form
-                  *ngIf="editableMeta"
-                  class="card p-2"
-                  (ngSubmit)="updateMetaEntry()"
-                  [formGroup]="metaForm"
-                >
+                <form *ngIf="editableMeta" class="card p-2" (ngSubmit)="updateMetaEntry()" [formGroup]="metaForm">
                   <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="nombreMeta"
-                      aria-describedby="emailHelp"
-                      placeholder="Nombre de la meta"
-                      formControlName="nombreMeta"
-                    />
+                    <input type="text" class="form-control" id="nombreMeta" aria-describedby="emailHelp"
+                      placeholder="Nombre de la meta" formControlName="nombreMeta">
                   </div>
-
+              
                   <div class="mb-3">
                     <label for="tipo" class="form-label">Descripción</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="descripcion"
-                      placeholder="Descripción de la meta"
-                      formControlName="descripcion"
-                    />
+                    <input type="text" class="form-control" id="descripcion" placeholder="Descripción de la meta"
+                      formControlName="descripcion">
                   </div>
                   <div class="mb-3">
                     <label for="fecha" class="form-label">Fecha</label>
-                    <input
-                      type="date"
-                      class="form-control"
-                      id="fecha"
-                      placeholder="Fecha"
-                      formControlName="fecha"
-                    />
+                    <input type="date" class="form-control" id="fecha" placeholder="Fecha" formControlName="fecha">
                   </div>
                   <div class="input-group justify-content-center md-12">
-                    <button
-                      type="submit"
-                      class="btn btn-primary"
-                      data-bs-dismiss="modal"
-                    >
-                      Guardar
-                    </button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
                   </div>
                 </form>
               </div>
@@ -137,91 +92,49 @@
           </div>
 
           <!-- Modal New Meta-->
-          <div
-            class="modal fade"
-            id="exampleModal"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">
-                    Nueva Meta
-                  </h1>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Nueva Meta</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <form
-                    class="card p-2"
-                    (ngSubmit)="newMetaEntry()"
-                    [formGroup]="metaForm"
-                  >
+                  <form class="card p-2" (ngSubmit)="newMetaEntry()" [formGroup]="metaForm">
                     <div class="mb-3">
                       <label for="nombre" class="form-label">Nombre</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="nombreMeta"
-                        aria-describedby="emailHelp"
-                        placeholder="Nombre de la meta"
-                        formControlName="nombreMeta"
-                      />
+                      <input type="text" class="form-control" id="nombreMeta" aria-describedby="emailHelp"
+                        placeholder="Nombre de la meta" formControlName="nombreMeta">
                     </div>
                     <div class="mb-3">
                       <label for="tipo" class="form-label">Descripción</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="descripcion"
-                        placeholder="Descripción de la meta"
-                        formControlName="descripcion"
-                      />
+                      <input type="text" class="form-control" id="descripcion" placeholder="Descripción de la meta"
+                        formControlName="descripcion">
                     </div>
                     <div class="mb-3">
                       <label for="fecha" class="form-label">Fecha</label>
-                      <input
-                        type="date"
-                        class="form-control"
-                        id="fecha"
-                        placeholder="Fecha"
-                        formControlName="fecha"
-                      />
+                      <input type="date" class="form-control" id="fecha" placeholder="Fecha" formControlName="fecha">
                     </div>
                     <div class="input-group justify-content-center md-12">
-                      <button
-                        type="submit"
-                        class="btn btn-primary"
-                        data-bs-dismiss="modal"
-                      >
-                        Guardar
-                      </button>
+                      <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
                     </div>
                   </form>
                 </div>
                 <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Cerrar
-                  </button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
               </div>
             </div>
           </div>
 
           <!--Termina el CONTENIDO CENTRAL-->
+
         </div>
+
       </div>
       <!-- /.container-fluid -->
+
     </div>
     <!-- End of Main Content -->
 
@@ -234,7 +147,9 @@
       </div>
     </footer>
     <!-- End of Footer -->
+
   </div>
   <!-- End of Content Wrapper -->
+
 </div>
 <!-- End of Page Wrapper -->

@@ -2,27 +2,24 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class EmocionService {
-  apiUri = '/api/emociones';
+export class MetaService {
+  apiUri = '/api/metas';
 
   constructor(private http: HttpClient) { }
 
-  getAllEmocionesData(token: any): Observable<any> {
-
+  getAllMetasData(token: any): Observable<any> {
     return this.http.get(this.apiUri, {
-      headers:
-      {
+      headers: {
         'Content-Type': 'application/json',
         accessToken: `${token}`
       }
     });
   }
 
-  newEmocion(token: any, data: any): Observable<any> {
+  newMeta(token: any, data: any): Observable<any> {
     return this.http.post<any>(
       this.apiUri,
       data,
@@ -34,33 +31,38 @@ export class EmocionService {
       });
   }
 
-  updateEmocion(token: any, id: any, data: any): Observable<any> {
-    console.log(data)
+  updateMeta(token: any, id: any, data: any): Observable<any> {
+    console.log(data);
     return this.http.put<any>(
       this.apiUri + '/' + id,
       data,
-      { headers: {
-        'Content-Type': 'application/json',
-        accessToken: `${token}`
-      } });
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          accessToken: `${token}`
+        }
+      });
   }
 
-  getOneEmocion(token: any, id: any): Observable<any> {
+  getOneMeta(token: any, id: any): Observable<any> {
     return this.http.get<any>(
       this.apiUri + '/' + id,
-      { headers: {
-        'Content-Type': 'application/json',
-        accessToken: `${token}`
-      } });
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          accessToken: `${token}`
+        }
+      });
   }
 
-  deleteEmocion(token: any, id: any) {
+  deleteMeta(token: any, id: any) {
     return this.http.delete<any>(
       this.apiUri + "/" + id,
-      { headers: {
-        'Content-Type': 'application/json',
-        accessToken: `${token}`
-      } });
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          accessToken: `${token}`
+        }
+      });
   }
-
 }
