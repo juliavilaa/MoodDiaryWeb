@@ -1,0 +1,30 @@
+/* Configurar el cuerpo para centrar todo */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Altura completa de la ventana */
+  margin: 0;
+  background-color: #f7f7f7; /* Fondo claro */
+}
+
+/* Contenedor principal de las gráficas */
+.chart-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
+  grid-gap: 60px; /* Espaciado entre las gráficas */
+  align-items: center; /* Centra cada ítem verticalmente */
+  width: 90%; /* Ajusta el ancho para evitar bordes */
+  max-width: 1200px; /* Ancho máximo para pantallas grandes */
+  height: 80vh; /* Altura máxima para centrar */
+}
+
+/* Estilo de las cajas individuales */
+.chart-box {
+  text-align: center; /* Centra los textos dentro de cada caja */
+}
+
+canvas {
+  max-width: 100%;
+  max-height: 500px; /* Ajustar tamaño de las gráficas */
+}

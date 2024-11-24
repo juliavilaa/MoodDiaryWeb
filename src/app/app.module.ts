@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AnimalComponent } from './components/animal/animal.component';
 import { EmocionComponent } from './components/emocion/emocion.component';
 import { MetaComponent } from './components/meta/meta.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,10 +14,10 @@ import { SignupComponent } from './authentication/signup/signup.component';
 import { AuthenticationService } from './services/authentication.service';
 import { MenuComponent } from './components/menu/menu.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    AnimalComponent,
     EmocionComponent,
     MetaComponent,
     LoginComponent,

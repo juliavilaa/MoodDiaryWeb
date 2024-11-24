@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { User } from 'src/app/models/user';
+
 
 @Component({
   selector: 'app-login',
@@ -24,7 +24,7 @@ export class LoginComponent {
       (res:any) => {
         localStorage.setItem('access-token',JSON.parse(JSON.stringify(res)).token);
         localStorage.setItem('usuario', JSON.stringify(res.user));
-        this.router.navigateByUrl('/animal');
+        this.router.navigateByUrl('/home');
       }
     );
   }
