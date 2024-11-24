@@ -1,5 +1,5 @@
 import { FormBuilder } from '@angular/forms';
-import { EmocionService } from 'src\app\services\emocion.service'; 
+import { EmocionService } from './../../services/emocion.service'; 
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';

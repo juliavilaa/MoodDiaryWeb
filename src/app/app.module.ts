@@ -4,6 +4,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AnimalComponent } from './components/animal/animal.component';
+import { EmocionComponent } from './components/emocion/emocion.component';
+import { MetaComponent } from './components/meta/meta.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -17,6 +19,8 @@ import { MenuComponent } from './components/menu/menu.component';
   declarations: [
     AppComponent,
     AnimalComponent,
+    EmocionComponent,
+    MetaComponent,
     LoginComponent,
     SignupComponent,
     MenuComponent,

@@ -5,6 +5,8 @@ import { SignupComponent } from './authentication/signup/signup.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { EmocionComponent } from './components/emocion/emocion.component';
+import { MetaComponent } from './components/meta/meta.component';
 
 const routes: Routes = [
   {path: '',component: SignupComponent},
@@ -15,8 +17,8 @@ const routes: Routes = [
   {path: 'menu',component: MenuComponent},
   {path: 'home', component: AnimalComponent },
   {path: 'analisis', component: AnimalComponent },
-  {path: 'emociones', component: AnimalComponent },
-  {path: 'metas', component: AnimalComponent },
+  {path: 'emociones', component: EmocionComponent },
+  {path: 'metas', component: MetaComponent },
 ];
 
 @NgModule({

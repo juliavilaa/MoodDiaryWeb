@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EmocionComponent } from './emocion.component';
+import { MetaComponent } from './meta.component';
 
 describe('AnimalComponent', () => {
-  let component: EmocionComponent;
-  let fixture: ComponentFixture<EmocionComponent>;
+  let component: MetaComponent;
+  let fixture: ComponentFixture<MetaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EmocionComponent ]
+      declarations: [ MetaComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EmocionComponent);
+    fixture = TestBed.createComponent(MetaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
