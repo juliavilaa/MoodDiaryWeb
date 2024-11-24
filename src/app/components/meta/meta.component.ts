@@ -15,7 +15,7 @@ export class MetaComponent {
     titlePage: string = 'Metas';
     metaList: any = [];
     metaForm: any = this.formBuilder.group({
-      nombreMeta: '',
+      titulo: '',
       descripcion: '',
       fecha: Date
     })
@@ -81,7 +81,7 @@ export class MetaComponent {
         this.metaService.getOneMeta(localStorage.getItem('accessToken'), id).subscribe(
             data => {
                 this.metaForm.setValue({
-                    nombreMeta: data.nombreMeta,
+                    titulo: data.titulo,
                     descripcion: data.descripcion,
                     fecha: this.getValidDate(data.fecha)
                 });
