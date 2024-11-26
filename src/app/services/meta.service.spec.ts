@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import {  MetaService } from './meta.service';
 
-describe('EmocionService', () => {
+describe('MetaService', () => {
   let service: MetaService;
 
   beforeEach(() => {

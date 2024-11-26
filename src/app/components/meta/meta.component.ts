@@ -46,7 +46,7 @@ export class MetaComponent {
         this.metaService.newMeta(localStorage.getItem('accessToken'), this.metaForm.value).subscribe(
             () => {
                 //Redirigiendo a la ruta actual /meta y recargando la ventana
-                this.router.navigate(['/meta']).then(() => {
+                this.router.navigate(['/metas']).then(() => {
                     this.newMessage('Registro exitoso');
                 })
             }

@@ -1,133 +1,139 @@
 /* Contenedor principal */
 .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    overflow: hidden;
-    background-color: #ffe4e1; /* Color de fondo rosado claro */
-    background-image: url('/assets/images/background.jpg'); /* Fondo con formas */
-    background-size: cover;
-    background-position: center; 
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #ffe4e1; /* Color de fondo rosado claro */
+  background-image: url('/assets/images/background.jpg'); /* Fondo con formas */
+  background-size: cover;
+  background-position: center;
+}
 
+/* Estilo para la tabla con filas alternadas (oscuro y claro) */
 table {
-    width: 80%;
-  }
-  
-  body {
-    font-size: 0.875rem;
-  }
-  
-  .feather {
-    width: 16px;
-    height: 16px;
-    vertical-align: text-bottom;
-  }
-  
-  /*
-   * Sidebar
-   */
-  
-  .sidebar {
-    position: fixed;
-    top: 0;
-    /* rtl:raw:
-    right: 0;
-    */
-    bottom: 0;
-    /* rtl:remove */
-    left: 0;
-    z-index: 100; /* Behind the navbar */
-    padding: 48px 0 0; /* Height of navbar */
-    box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
-  }
-  
-  @media (max-width: 767.98px) {
-    .sidebar {
-      top: 5rem;
-    }
-  }
-  
-  .sidebar-sticky {
-    position: relative;
-    top: 0;
-    height: calc(100vh - 48px);
-    padding-top: 0.5rem;
-    overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-  }
-  
-  .sidebar .nav-link {
-    font-weight: 500;
-    color: #333;
-  }
-  
-  .sidebar .nav-link .feather {
-    margin-right: 4px;
-    color: #727272;
-  }
-  
-  .sidebar .nav-link.active {
-    color: #2470dc;
-  }
-  
-  .sidebar .nav-link:hover .feather,
-  .sidebar .nav-link.active .feather {
-    color: inherit;
-  }
-  
-  .sidebar-heading {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-  }
-  
-  /*
-   * Navbar
-   */
-  
-  .navbar-brand {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    font-size: 1rem;
-    background-color: rgba(0, 0, 0, 0.25);
-    box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.25);
-  }
-  
-  .navbar .navbar-toggler {
-    top: 0.25rem;
-    right: 1rem;
-  }
-  
-  .navbar .form-control {
-    padding: 0.75rem 1rem;
-    border-width: 0;
-    border-radius: 0;
-  }
-  
-  .form-control-dark {
-    color: #fff;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-  
-  .form-control-dark:focus {
-    border-color: transparent;
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
-  }
-  
-  .bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-  }
-  
-  @media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 3.5rem;
-    }
-  }
-  
+  width: 80%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto; /* Centra la tabla */
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  color: rgb(11, 11, 11); /* Texto negro */
+}
+
+tr:nth-child(odd) {
+  background-color: #9d61c8; /* Fila impar con un tono morado oscuro */
+}
+
+tr:nth-child(even) {
+  background-color: #7a1ec2; /* Fila par con un tono morado más claro */
+}
+
+th {
+  background-color: #5a0a99; /* Tono morado oscuro para el encabezado */
+  text-align: center;
+}
+
+td {
+  text-align: center;
+}
+
+/* Estilos para los botones (Registrar, Editar, Eliminar) */
+button {
+  background-color: #673a87; /* Fondo morado */
+  color: white; /* Texto blanco */
+  border: none; /* Sin borde */
+  padding: 10px 20px; /* Espaciado */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease; /* Transición suave en el hover */
+}
+
+button:hover {
+  background-color: #7a1ec2; /* Tono morado más claro al pasar el cursor */
+}
+
+/* Estilos adicionales para el formulario */
+form {
+  border-radius: 10px;
+  background-color: #f3e6f7; /* Fondo morado claro para el formulario */
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+label {
+  color: #6a0dad; /* Color de texto morado para las etiquetas */
+  font-weight: bold;
+}
+
+input[type="text"], input[type="date"], select {
+  border: 1px solid #6a0dad; /* Borde morado */
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 10px;
+  background-color: #c47ff2; /* Fondo morado claro para los inputs */
+}
+
+input[type="text"]:focus, input[type="date"]:focus, select:focus {
+  outline: none;
+  border-color: #7a1ec2; /* Borde más claro al hacer focus */
+  box-shadow: 0 0 5px #7a1ec2; /* Sombra de enfoque */
+}
+
+/* Estilo para la barra lateral (sidebar) */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+  padding: 48px 0 0;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .nav-link {
+  font-weight: 500;
+  color: #6a0dad; /* Color morado para los enlaces */
+}
+
+.sidebar .nav-link.active {
+  color: #2470dc;
+}
+
+.sidebar .nav-link:hover {
+  color: #6a0dad; /* Cambio a morado cuando pasa el mouse sobre los enlaces */
+}
+
+/* Navbar */
+.navbar-brand {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: 1rem;
+  background-color: rgba(0, 0, 0, 0.25);
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.25);
+}
+
+/* Estilos para la barra de búsqueda */
+.form-control-dark {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.form-control-dark:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+}
+
+.form-control {
+  padding: 0.75rem 1rem;
+  border-width: 0;
+  border-radius: 0;
+}

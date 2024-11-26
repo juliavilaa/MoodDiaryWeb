@@ -22,7 +22,7 @@ export class LoginComponent {
   onLogin(form: any): void {
     this.authenticationService.login(form.value).subscribe(
       (res:any) => {
-        localStorage.setItem('access-token',JSON.parse(JSON.stringify(res)).token);
+        localStorage.setItem('accessToken',JSON.parse(JSON.stringify(res)).token);
         localStorage.setItem('usuario', JSON.stringify(res.user));
         this.router.navigateByUrl('/home');
       }

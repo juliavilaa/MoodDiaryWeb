@@ -10,11 +10,9 @@
       <div class="container-fluid">
 
         <!-- Content Row -->
-
         <div class="row">
 
-          <!--AQUI EL CONTENIDO CENTRAL-->
-
+          <!-- Contenido central -->
           <div class="container-fluid mt-4">
             <div class="row">
               <nav aria-label="breadcrumb">
@@ -26,26 +24,28 @@
               <div class="col-md-12 d-flex justify-content-center">
                 <div class="page-header">
                   <h1>
-                    <small>Metas</small>
+                    <small>¿Qué deseas lograr hoy?</small>
                   </h1>
                 </div>
               </div>
             </div>
-            <!--CONTENIDO-->
+
+            <!-- Tabla de metas -->
             <div class="row">
               <div class="col-md-10">
-                <div class="">
-                  <!-- Button trigger modal -->
+                <div class="mb-3">
+                  <!-- Botón para registrar metas -->
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Registrar Meta
                   </button>
                 </div>
-                <!--INICIA TABLA-->
+
+                <!-- Tabla -->
                 <div class="table-responsive">
                   <table class="table table-striped table-sm">
                     <thead>
                       <tr>
-                        <th scope="col">Nombre Meta</th>
+                        <th scope="col">Título</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Fecha</th>
                         <th scope="col">Editar</th>
@@ -64,36 +64,35 @@
                             <i class="bi bi-trash"></i>
                           </button></td>
                       </tr>
+                    </tbody>
                   </table>
                 </div>
-                <!--TERMINA TABLA-->
+
+                <!-- Formulario de edición -->
                 <form *ngIf="editableMeta" class="card p-2" (ngSubmit)="updateMetaEntry()" [formGroup]="metaForm">
                   <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="nombreMeta" aria-describedby="emailHelp"
-                      placeholder="Nombre de la meta" formControlName="nombreMeta">
+                    <label for="titulo" class="form-label">Título</label>
+                    <input type="text" class="form-control" id="tituloMeta" placeholder="Título de la meta" formControlName="titulo">
                   </div>
-              
+
                   <div class="mb-3">
-                    <label for="tipo" class="form-label">Descripción</label>
-                    <input type="text" class="form-control" id="descripcion" placeholder="Descripción de la meta"
-                      formControlName="descripcion">
+                    <label for="descripcion" class="form-label">Descripción</label>
+                    <input type="text" class="form-control" id="descripcion" placeholder="Descripción de la meta" formControlName="descripcion">
                   </div>
                   <div class="mb-3">
                     <label for="fecha" class="form-label">Fecha</label>
                     <input type="date" class="form-control" id="fecha" placeholder="Fecha" formControlName="fecha">
                   </div>
-                  <div class="input-group justify-content-center md-12">
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+                  <div class="input-group justify-content-center">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
                   </div>
                 </form>
               </div>
             </div>
           </div>
 
-          <!-- Modal New Meta-->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+          <!-- Modal para registrar nueva meta -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -103,21 +102,19 @@
                 <div class="modal-body">
                   <form class="card p-2" (ngSubmit)="newMetaEntry()" [formGroup]="metaForm">
                     <div class="mb-3">
-                      <label for="nombre" class="form-label">Nombre</label>
-                      <input type="text" class="form-control" id="nombreMeta" aria-describedby="emailHelp"
-                        placeholder="Nombre de la meta" formControlName="nombreMeta">
+                      <label for="titulo" class="form-label">Título</label>
+                      <input type="text" class="form-control" id="tituloMeta" placeholder="Título de la meta" formControlName="titulo">
                     </div>
                     <div class="mb-3">
-                      <label for="tipo" class="form-label">Descripción</label>
-                      <input type="text" class="form-control" id="descripcion" placeholder="Descripción de la meta"
-                        formControlName="descripcion">
+                      <label for="descripcion" class="form-label">Descripción</label>
+                      <input type="text" class="form-control" id="descripcion" placeholder="Descripción de la meta" formControlName="descripcion">
                     </div>
                     <div class="mb-3">
                       <label for="fecha" class="form-label">Fecha</label>
-                      <input type="date" class="form-control" id="fecha" placeholder="Fecha" formControlName="fecha">
+                      <input type="date" class="form-control" id="fecha" formControlName="fecha">
                     </div>
-                    <div class="input-group justify-content-center md-12">
-                      <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+                    <div class="input-group justify-content-center">
+                      <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
                   </form>
                 </div>
@@ -128,28 +125,8 @@
             </div>
           </div>
 
-          <!--Termina el CONTENIDO CENTRAL-->
-
         </div>
-
       </div>
-      <!-- /.container-fluid -->
-
     </div>
-    <!-- End of Main Content -->
-
-    <!-- Footer -->
-    <footer class="sticky-footer bg-white">
-      <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-          <span>Copyright &copy; Your Website 2021</span>
-        </div>
-      </div>
-    </footer>
-    <!-- End of Footer -->
-
   </div>
-  <!-- End of Content Wrapper -->
-
 </div>
-<!-- End of Page Wrapper -->

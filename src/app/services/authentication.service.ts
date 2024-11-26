@@ -38,19 +38,19 @@ export class AuthenticationService {
 
   logout() {
     this.token = '';
-    localStorage.removeItem("ACCESS_TOKEN");
+    localStorage.removeItem("accessToken");
     localStorage.removeItem("EXPIRES_IN");
   }
 
   private saveToken(token: string, expiresIn: string) {
-    localStorage.setItem("ACCESS_TOKEN", token);
+    localStorage.setItem("accessToken", token);
     localStorage.setItem("EXPIRES_IN", token);
     this.token = token;
   }
 
   private getToken(): string | null {
     if (!this.token) {
-      this.token = localStorage.getItem("ACCESS_TOKEN");
+      this.token = localStorage.getItem("accessToken");
     }
     return this.token;
   }

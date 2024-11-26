@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'webzoologico';
+  title = 'MoodDiary';
   titlePage = '';
 
   constructor(@Inject(DOCUMENT) private document: Document, private router:Router){
