@@ -47,8 +47,8 @@ import { formatDate } from '@angular/common';
         this.emocionService.newEmocion(localStorage.getItem('accessToken'), this.emocionForm.value).subscribe(
           () => {
             //Redirigiendo a la ruta actual /emocion y recargando la ventana
-            this.router.navigate(['/emocion']).then(() => {
-              this.newMessage('Registro exitoso');
+            this.newMessage('Registro exitoso');
+            this.router.navigate(['/emocion']).then(() => {          
             })
           }
         );

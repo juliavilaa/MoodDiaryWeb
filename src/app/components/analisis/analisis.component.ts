@@ -1,101 +1,167 @@
-import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { Chart, ChartType, registerables } from 'chart.js';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { EmocionService } from 'src/app/services/emocion.service';
+import { Chart, ChartConfiguration, registerables } from 'chart.js';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-analisis',
   templateUrl: './analisis.component.html',
   styleUrls: ['./analisis.component.css']
 })
-export class AnalisisComponent implements OnInit, AfterViewInit {
-  @ViewChild('pieChartCanvas') pieChartCanvas!: ElementRef;
-  @ViewChild('barChartCanvas') barChartCanvas!: ElementRef;
+export class AnalisisComponent implements AfterViewInit {
+  @ViewChild('pieChartCanvas') pieChartCanvas!: ElementRef<HTMLCanvasElement>;
+  @ViewChild('barChartCanvas') barChartCanvas!: ElementRef<HTMLCanvasElement>;
 
-  // Datos quemados
-  private emociones = [
-    { _id: "672ae135753e65cbcdfc2c76", nombreEmocion: "Alegria", descripcion: "Comi helado", fecha: "2024-11-05T00:00:00.000Z" },
-    { _id: "673a7a56457b8d50006a35c4", nombreEmocion: "Nostalgia", descripcion: "Comi helado", fecha: "2024-11-05T00:00:00.000Z" },
-    { _id: "673ab054045880e5bd396c96", nombreEmocion: "Alegria", descripcion: "vi a alguien", fecha: "2024-12-05T00:00:00.000Z" },
-    { _id: "673ab066045880e5bd396c9a", nombreEmocion: "Alegria", descripcion: "vi a alguien", fecha: "2024-09-05T00:00:00.000Z" },
-    { _id: "673ab8504b48527f1da63c75", nombreEmocion: "Alegria", descripcion: "Sali con mis amigos", fecha: "2024-09-05T00:00:00.000Z" },
-    { _id: "673ab9514b48527f1da63c78", nombreEmocion: "Alegria", descripcion: "Sali con mis amigos a comer", fecha: "2024-09-05T00:00:00.000Z" }
-  ];
+  pieChart!: Chart<'pie'>;
+  barChart!: Chart<'bar'>;
 
-  constructor() {
-    Chart.register(...registerables);
+  constructor(private emocionService: EmocionService, private authService: AuthenticationService) {
+    Chart.register(...registerables); // Registrar componentes necesarios de Chart.js
   }
-
-  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    this.generarGraficas();
+    const token = this.authService.getToken();
+    this.createPieChart([], []);
+    this.createBarChart([], []);
+    this.cargarDatosDesdeDB(token); // Reemplaza con el token real
   }
 
-  generarGraficas() {
-    // Gráfica de pastel - Emociones por porcentaje
-    const emocionContador: { [key: string]: number } = {};
-    this.emociones.forEach((emocion) => {
-      const nombre = emocion.nombreEmocion;
-      emocionContador[nombre] = (emocionContador[nombre] || 0) + 1;
+  cargarDatosDesdeDB(token: any) {
+    this.emocionService.getAllEmocionesData(token).subscribe((response: any[]) => {
+      // Inicializa los contadores para cada día y emoción
+      const emocionesPorDia: { [dia: string]: { [emocion: string]: number } } = {
+        Lunes: {}, Martes: {}, Miércoles: {}, Jueves: {}, Viernes: {}, Sábado: {}, Domingo: {}
+      };
+  
+      const diasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+  
+      response.forEach((emocion) => {
+        const fecha = new Date(emocion.fecha);
+        const dia = diasSemana[fecha.getDay()]; // Obtén el día de la semana (0 = Domingo, 1 = Lunes, etc.)
+        const nombreEmocion = emocion.nombreEmocion.trim();
+  
+        // Incrementa el contador de esa emoción en el día correspondiente
+        emocionesPorDia[dia][nombreEmocion] = (emocionesPorDia[dia][nombreEmocion] || 0) + 1;
+      });
+  
+      // Calcular totales por día para convertirlos a porcentajes (para el gráfico de barras)
+      const datasets = Object.keys(response.reduce((acc, emocion) => {
+        acc[emocion.nombreEmocion.trim()] = true;
+        return acc;
+      }, {})).map((emocion, index) => ({
+        label: emocion,
+        data: diasSemana.map((dia) => {
+          const totalPorDia = Object.values(emocionesPorDia[dia]).reduce((acc, val) => acc + val, 0);
+          return totalPorDia > 0 ? (emocionesPorDia[dia][emocion] || 0) / totalPorDia * 100 : 0;
+        }),
+        backgroundColor: this.getPastelColor(index), // Usamos la función para asignar colores pastel
+      }));
+  
+      // Actualiza el gráfico de barras con los datos calculados
+      this.updateBarChart(diasSemana, datasets);
+  
+      // Calcular porcentajes para el gráfico de pie (porcentaje total de cada emoción)
+      const emocionContador: { [emocion: string]: number } = {};
+      response.forEach((emocion) => {
+        const nombreEmocion = emocion.nombreEmocion.trim();
+        emocionContador[nombreEmocion] = (emocionContador[nombreEmocion] || 0) + 1;
+      });
+  
+      const total = response.length;
+      const emocionPorcentaje: { [emocion: string]: number } = {};
+      for (const key in emocionContador) {
+        emocionPorcentaje[key] = (emocionContador[key] / total) * 100;
+      }
+  
+      // Extrae las etiquetas y los datos para el gráfico de pie
+      const labelsPie = Object.keys(emocionPorcentaje);
+      const dataPie = Object.values(emocionPorcentaje);
+      const pastelColors = labelsPie.map((_, index) => this.getPastelColor(index));
+      // Actualiza el gráfico de pie con los datos calculados
+      this.updatePieChart(labelsPie, dataPie,pastelColors);
     });
-
-    const total = this.emociones.length;
-    const emocionPorcentaje: { [key: string]: number } = {};
-    for (const key in emocionContador) {
-      emocionPorcentaje[key] = (emocionContador[key] / total) * 100;
-    }
-
-    this.crearGrafica(
-      this.pieChartCanvas.nativeElement,
-      'pie',
-      Object.keys(emocionPorcentaje),
-      Object.values(emocionPorcentaje),
-      'Distribución de Emociones (%)'
-    );
-
-    // Gráfica de barras - Emociones por día
-    const emocionesPorFecha: { [fecha: string]: number } = {};
-    this.emociones.forEach((emocion) => {
-      const fecha = new Date(emocion.fecha).toLocaleDateString();
-      emocionesPorFecha[fecha] = (emocionesPorFecha[fecha] || 0) + 1;
-    });
-
-    this.crearGrafica(
-      this.barChartCanvas.nativeElement,
-      'bar',
-      Object.keys(emocionesPorFecha),
-      Object.values(emocionesPorFecha),
-      'Emociones Registradas por Día'
-    );
   }
+  
 
-  crearGrafica(canvas: HTMLCanvasElement, tipo: ChartType, labels: string[], data: number[], titulo: string) {
-    new Chart(canvas, {
-      type: tipo,
+  // Función para generar colores pastel
+getPastelColor(index: number): string {
+  const pastelColors = [
+    "#FFB3BA", "#FFDFBA", "#FFFFBA", "#BAFFB3", "#BAE1FF",
+    "#E3BAFF", "#FFB6C1", "#C1E1C1", "#FFE4E1", "#D3E4F7"
+  ];
+  return pastelColors[index % pastelColors.length]; // Garantiza que siempre haya un color disponible
+}
+
+  
+
+  createPieChart(labels: string[], data: number[]): void {
+  const ctx = this.pieChartCanvas.nativeElement.getContext('2d');
+
+  // Generar los colores pastel para cada etiqueta
+  const pastelColors = labels.map((_, index) => this.getPastelColor(index));
+
+  const config: ChartConfiguration<'pie', number[], string> = {
+    type: 'pie',
+    data: {
+      labels,
+      datasets: [
+        {
+          data,
+          backgroundColor: pastelColors, // Usar los colores pastel generados
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+    },
+  };
+
+  this.pieChart = new Chart<'pie'>(ctx!, config);
+}
+
+
+  
+  createBarChart(labels: string[], data: number[]) {
+    const ctx = this.barChartCanvas.nativeElement.getContext('2d');
+
+    const config: ChartConfiguration<'bar', number[], string> = {
+      type: 'bar',
       data: {
         labels,
         datasets: [
           {
+            label: 'Porcentaje de emociones',
             data,
             backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
-            hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
-          }
-        ]
+            borderColor: '#666',
+            borderWidth: 1,
+          },
+        ],
       },
       options: {
-        plugins: {
-          title: {
-            display: true,
-            text: titulo,
-            font: { size: 18 },
-            color: '#333'
-          },
-          legend: {
-            display: tipo === 'pie'
-          }
-        },
         responsive: true,
-        scales: tipo === 'bar' ? { y: { beginAtZero: true } } : undefined
-      }
-    });
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    };
+
+    this.barChart = new Chart<'bar'>(ctx!, config);
   }
+
+  updatePieChart(labels: string[], data: number[], backgroundColor: string[]) {
+    this.pieChart.data.labels = labels;
+    this.pieChart.data.datasets[0].data = data;
+    this.pieChart.data.datasets[0].backgroundColor = backgroundColor; // Asignamos los colores pastel
+    this.pieChart.update();
+  }
+
+  updateBarChart(labels: string[], datasets: { label: string; data: number[]; backgroundColor: string }[]) {
+    this.barChart.data.labels = labels;
+    this.barChart.data.datasets = datasets;
+    this.barChart.update();
+  }
+  
 }
