@@ -18,7 +18,7 @@ export class MetaComponent {
     metaForm: any = this.formBuilder.group({
       titulo: '',
       descripcion: '',
-      fechaInicio: Date,
+      /* fechaInicio: Date, */
       fechaFinalizacion: Date,
       estado: false //valor por defecto
     })
@@ -40,6 +40,7 @@ export class MetaComponent {
     getAllMetas() {
         this.metaService.getAllMetasData(localStorage.getItem('accessToken')).subscribe(
             (data: {}) => {
+                console.log(data);
                 this.metaList = data;
             }
         );
@@ -86,8 +87,8 @@ export class MetaComponent {
                 this.metaForm.setValue({
                     titulo: data.titulo,
                     descripcion: data.descripcion,
-                    fechaInicio: this.getValidDate(data.fecha),
-                    fechaFinalizacion: this.getValidDate(data.fecha),
+                    /* fechaInicio: this.getValidDate(data.fechaInicio), */
+                    fechaFinalizacion: this.getValidDate(data.fechaFinalizacion),
                     estado: data.estado
             } );
     }  );
