@@ -137,3 +137,10 @@ input[type="text"]:focus, input[type="date"]:focus, select:focus {
   border-width: 0;
   border-radius: 0;
 }
+.container-fluid {
+  background-color: transparent; 
+}
+
+.table-responsive {
+  background-color: transparent; /* También asegurar transparencia en el contenedor de la tabla */
+}

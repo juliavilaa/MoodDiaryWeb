@@ -5,8 +5,6 @@
     align-items: center;
     min-height: 100vh;
     overflow: hidden;
-    background-color: #ffe4e1; /* Color de fondo rosado claro */
-    background-image: url('/assets/images/background.jpg'); /* Fondo con formas */
     background-size: cover;
     background-position: center; 
   }

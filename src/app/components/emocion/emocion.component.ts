@@ -30,8 +30,6 @@ import { formatDate } from '@angular/common';
         private toastr: ToastrService
     ){}
 
-  
-
       ngOnInit() {
         this.getAllEmociones();
       }

@@ -5,8 +5,6 @@
   align-items: center;
   min-height: 100vh;
   overflow: hidden;
-  background-color: #ffe4e1; /* Color de fondo rosado claro */
-  background-image: url('/assets/images/background.jpg'); /* Fondo con formas */
   background-size: cover;
   background-position: center;
 }
@@ -136,4 +134,12 @@ input[type="text"]:focus, input[type="date"]:focus, select:focus {
   padding: 0.75rem 1rem;
   border-width: 0;
   border-radius: 0;
+}
+
+.container-fluid {
+  background-color: transparent; 
+}
+
+.table-responsive {
+  background-color: transparent; /* También asegurar transparencia en el contenedor de la tabla */
 }

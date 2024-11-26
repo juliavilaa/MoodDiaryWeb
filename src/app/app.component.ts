@@ -21,6 +21,6 @@ export class AppComponent {
     return this.router.url === '/login'; 
   }
   esPaginaSignup(): boolean {
-    return this.router.url === '/signup'; 
+    return this.router.url === '/'; 
   }
 }
