@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs';
 import { formatDate } from '@angular/common';
 
+
 @Component({
     selector: 'app-meta',
     templateUrl: './meta.component.html',
@@ -17,7 +18,9 @@ export class MetaComponent {
     metaForm: any = this.formBuilder.group({
       titulo: '',
       descripcion: '',
-      fecha: Date
+      fechaInicio: Date,
+      fechaFinalizacion: Date,
+      estado: false //valor por defecto
     })
     editableMeta: boolean = false;
     idMeta: any;
@@ -83,10 +86,11 @@ export class MetaComponent {
                 this.metaForm.setValue({
                     titulo: data.titulo,
                     descripcion: data.descripcion,
-                    fecha: this.getValidDate(data.fecha)
-                });
-            }
-        );
+                    fechaInicio: this.getValidDate(data.fecha),
+                    fechaFinalizacion: this.getValidDate(data.fecha),
+                    estado: data.estado
+            } );
+    }  );
         this.editableMeta = !this.editableMeta;
     }
 

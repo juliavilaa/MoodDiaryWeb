@@ -1,15 +1,4 @@
-/* Contenedor principal */
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  overflow: hidden;
-  background-color: #ffe4e1; /* Color de fondo rosado claro */
-  background-image: url('/assets/images/background.jpg'); /* Fondo con formas */
-  background-size: cover;
-  background-position: center;
-}
+
 
 /* Estilo para la tabla con filas alternadas (oscuro y claro) */
 table {
@@ -23,7 +12,7 @@ table {
 th, td {
   padding: 12px;
   text-align: left;
-  color: rgb(11, 11, 11); /* Texto negro */
+  color: rgb(11, 11, 11); /* Texto blanco */
 }
 
 tr:nth-child(odd) {
@@ -122,25 +111,17 @@ input[type="text"]:focus, input[type="date"]:focus, select:focus {
 
 /* Estilos para la barra de búsqueda */
 .form-control-dark {
-  color: #fff;
+  color: #0cbb18;
   background-color: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.1);
 }
 
-.form-control-dark:focus {
-  border-color: transparent;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
-}
+
 
 .form-control {
   padding: 0.75rem 1rem;
   border-width: 0;
-  border-radius: 0;
-}
-.container-fluid {
-  background-color: transparent; 
+  border-radius: 0;
 }
 
-.table-responsive {
-  background-color: transparent; /* También asegurar transparencia en el contenedor de la tabla */
-}
+

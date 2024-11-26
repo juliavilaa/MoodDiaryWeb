@@ -1,13 +1,4 @@
-/* Contenedor principal */
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-}
+
 
 /* Estilo para la tabla con filas alternadas (oscuro y claro) */
 table {

@@ -47,7 +47,9 @@
                       <tr>
                         <th scope="col">Título</th>
                         <th scope="col">Descripción</th>
-                        <th scope="col">Fecha</th>
+                        <th scope="col">Fecha de Inicio</th>
+                        <th scope="col">Fecha de Finalización</th>
+                        <th scope="col">Estado</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
                       </tr>
@@ -56,7 +58,9 @@
                       <tr *ngFor="let item of metaList">
                         <td>{{item.titulo}}</td>
                         <td>{{item.descripcion}}</td>
-                        <td>{{item.fecha}}</td>
+                        <td>{{item.fechaInicio}}</td>
+                        <td>{{item.fechaFinalizacion}}</td>
+                        <td>{{item.estado}}</td>
                         <td><button type="button" class="btn btn-primary" (click)="toggleEditMeta(item._id)">
                             <i class="bi bi-pencil-square"></i>
                           </button></td>
@@ -70,21 +74,39 @@
 
                 <!-- Formulario de edición -->
                 <form *ngIf="editableMeta" class="card p-2" (ngSubmit)="updateMetaEntry()" [formGroup]="metaForm">
-                  <div class="mb-3">
-                    <label for="titulo" class="form-label">Título</label>
-                    <input type="text" class="form-control" id="tituloMeta" placeholder="Título de la meta" formControlName="titulo">
+                 <div class="mb-3">
+                      <label for="titulo" class="form-label">Título</label>
+                      <input type="text" class="form-control" id="tituloMeta" placeholder="Título de la meta" formControlName="titulo">
+                    </div>
+                    <div class="mb-3">
+                      <label for="descripcion" class="form-label">Descripción</label>
+                      <input type="text" class="form-control" id="descripcion" placeholder="Descripción de la meta" formControlName="descripcion">
+                    </div>
+                    <div class="mb-3">
+                    </div>
+                    <div class="mb-3">
+                      <label for="fecha" class="form-label">Fecha Inicio</label>
+                      <input type="date" class="form-control" id="fechaInicio" placeholder="Fecha de inicion de la meta" formControlName="fecha">
+                    </div>
+                    <div class="mb-3">
+                      <label for="fecha" class="form-label">Fecha Finalizacion</label>
+                      <input type="date" class="form-control" id="fechaFinalizacion" placeholder="Fecha en la que se debe haber cumplido la meta" formControlName="fechaFinalizacion">
+                    </div>
+                    <div class="mb-3">
+                      <label for="estado" class="form-label">Estado</label>
+                      <div class="form-check">
+                          <input 
+                              type="checkbox" 
+                              class="form-check-input" 
+                              id="estado" 
+                              formControlName="estado">
+                          <label class="form-check-label" for="estado">
+                              ¿Cumplida?
+                          </label>
+                      </div>
                   </div>
-
-                  <div class="mb-3">
-                    <label for="descripcion" class="form-label">Descripción</label>
-                    <input type="text" class="form-control" id="descripcion" placeholder="Descripción de la meta" formControlName="descripcion">
-                  </div>
-                  <div class="mb-3">
-                    <label for="fecha" class="form-label">Fecha</label>
-                    <input type="date" class="form-control" id="fecha" placeholder="Fecha" formControlName="fecha">
-                  </div>
-                  <div class="input-group justify-content-center">
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                  <div class="input-group justify-content-center md-12">
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
                   </div>
                 </form>
               </div>
@@ -110,9 +132,29 @@
                       <input type="text" class="form-control" id="descripcion" placeholder="Descripción de la meta" formControlName="descripcion">
                     </div>
                     <div class="mb-3">
-                      <label for="fecha" class="form-label">Fecha</label>
-                      <input type="date" class="form-control" id="fecha" formControlName="fecha">
                     </div>
+                    <div class="mb-3">
+                      <label for="fecha" class="form-label">Fecha Inicio</label>
+                      <input type="date" class="form-control" id="fechaInicio" placeholder="Fecha de inicion de la meta" formControlName="fecha">
+                    </div>
+                    <div class="mb-3">
+                      <label for="fecha" class="form-label">Fecha Finalizacion</label>
+                      <input type="date" class="form-control" id="fechaFinalizacion" placeholder="Fecha en la que se debe haber cumplido la meta" formControlName="fechaFinalizacion">
+                    </div>
+                    <div class="mb-3">
+                      <label for="estado" class="form-label">Estado</label>
+                      <div class="form-check">
+                          <input 
+                              type="checkbox" 
+                              class="form-check-input" 
+                              id="estado" 
+                              formControlName="estado">
+                          <label class="form-check-label" for="estado">
+                              ¿Cumplida?
+                          </label>
+                      </div>
+                  </div>
+  
                     <div class="input-group justify-content-center">
                       <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
